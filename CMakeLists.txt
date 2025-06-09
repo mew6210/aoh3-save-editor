@@ -1,8 +1,17 @@
-cmake_minimum_required(VERSION 3.15) 
+cmake_minimum_required(VERSION 4.0) 
 project(AOH3_Save_Editor)               
 set(CMAKE_CXX_STANDARD 14)           
 
-find_package(nlohmann_json CONFIG REQUIRED)
+include(FetchContent)
+
+FetchContent_Declare(
+  nlohmann_json
+  URL https://github.com/nlohmann/json/archive/refs/tags/v3.11.2.tar.gz
+  
+)
+
+FetchContent_MakeAvailable(nlohmann_json)
+
 
 set(SOURCE_FILES 
 "main.cpp"

@@ -1,6 +1,6 @@
 mkdir build
 cd build
-cmake -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ..
 cmake --build . --config Debug
 
 $SHELL
