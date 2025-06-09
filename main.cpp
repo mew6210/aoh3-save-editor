@@ -1,10 +1,13 @@
-#include <iostream>
-
+#include "main.h"
+using json=nlohmann::json;
 
 
 int main(){
 
-    std::cout<<"69"<<std::endl;    
+    Config config = initConfig();
+
+    config.printProperties();
+
 
 
     return 0;
