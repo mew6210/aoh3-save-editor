@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0) 
+cmake_minimum_required(VERSION 3.14) 
 project(AOH3_Save_Editor)               
 set(CMAKE_CXX_STANDARD 14)           
 
