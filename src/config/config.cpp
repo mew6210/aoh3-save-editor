@@ -1,7 +1,12 @@
 #include "config.hpp"
 
 
-const std::vector<std::string> CONFIG_PROPERTIES={"AOH3_Game_Location"};
+const std::vector<ConfigFileProperty> CONFIG_PROPERTIES={ConfigFileProperty({"lines that start with # are ignored",
+    R"(example for windows: C:\Program Files (x86)\Steam\steamapps\common\Age of History 3)",
+    "example for linux: /home/<your_username>/.steam/steam/steamapps/common/Age of History 3",
+    "for windows, DONT use double slashes"
+
+},"AOH3_Game_Location")};
 
 
 Config readConfig(){
@@ -11,6 +16,7 @@ Config readConfig(){
     std::string line="";
 
     while(std::getline(file,line)){
+        if (line[0]=='#') continue;
         size_t doublePeriodPosition=line.find(":");
         std::string property=line.substr(0,doublePeriodPosition);
         std::string value=line.substr(doublePeriodPosition+1);
@@ -27,12 +33,17 @@ Config createConfig(){
     Config config=Config();
     std::ofstream file("config.txt");
 
-    for(std::string property:CONFIG_PROPERTIES){
+    for(ConfigFileProperty property:CONFIG_PROPERTIES){
 
-        file<<property;
+        for(auto& comment:property.comments){
+            file<<"#";
+            file<<comment;
+            file<<"\n";
+        }
+        file<<property.property;
         file<<":";
         file<<"\n";
-        config.addProperty(property);
+        config.addProperty(property.property);
 
     }
     file.close();
@@ -61,8 +72,8 @@ Config initConfig(){
 int checkIfNotEmpty(Config config){
 
     for(auto& property:CONFIG_PROPERTIES){
-        if(config[property]==""|| config[property]=="not found"){
-            errorLog(property+" is empty, make sure to fill out config properly first");
+        if(config[property.property]==""|| config[property.property]=="not found"){
+            errorLog(property.property+" is empty, make sure to fill out config.txt properly first");
             return 1;
         }
     }

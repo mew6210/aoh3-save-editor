@@ -71,3 +71,20 @@ Config initConfig();
 
 
 int checkConfigValidity(Config c);
+
+
+class ConfigFileProperty{
+
+public:
+    std::vector<std::string> comments;
+    std::string property;
+
+    ConfigFileProperty(const std::vector<std::string>& comments1,std::string property1){
+        comments=comments1;
+        property=property1;
+    };
+    ConfigFileProperty(){};
+
+
+
+};

@@ -13,7 +13,6 @@ int main(){
 
     vector<string> saves= getAvalibleSaves(config["AOH3_Game_Location"]);
 
-    
 
 
 
