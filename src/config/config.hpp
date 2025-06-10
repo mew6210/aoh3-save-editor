@@ -1,3 +1,4 @@
+#pragma once
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -39,7 +40,34 @@ class Config{
 
     }
 
+    std::string getPropertyValue(std::string key) {
+
+
+		if (properties.count(key) > 0) {
+
+			std::string propertyValue = properties[key];
+			trim(propertyValue);
+			return propertyValue;
+		}
+		else {
+			std::cout<<"Not found property in config: "<<key;
+			return "not found";
+		}
+
+
+	}
+
+    std::string operator[](std::string s) {
+		return getPropertyValue(s);
+	}
+
+
+
+
 
 };
 
 Config initConfig();
+
+
+int checkConfigValidity(Config c);

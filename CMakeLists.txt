@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14) 
 project(AOH3_Save_Editor)               
-set(CMAKE_CXX_STANDARD 14)           
+set(CMAKE_CXX_STANDARD 17)           
 
 include(FetchContent)
 
@@ -17,6 +17,7 @@ set(SOURCE_FILES
 "main.cpp"
 "src/config/config.cpp"
 "src/utilities/utilities.cpp"
+"src/reader/reader.cpp"
 )
 
 

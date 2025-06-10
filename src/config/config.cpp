@@ -1,7 +1,7 @@
 #include "config.hpp"
 
 
-const std::vector<std::string> CONFIG_PROPERTIES={"AOH3_location"};
+const std::vector<std::string> CONFIG_PROPERTIES={"AOH3_Game_Location"};
 
 
 Config readConfig(){
@@ -11,7 +11,7 @@ Config readConfig(){
     std::string line="";
 
     while(std::getline(file,line)){
-        int doublePeriodPosition=line.find(":");
+        size_t doublePeriodPosition=line.find(":");
         std::string property=line.substr(0,doublePeriodPosition);
         std::string value=line.substr(doublePeriodPosition+1);
         config.addProperty(property,value);
@@ -49,13 +49,37 @@ Config initConfig(){
     
 
     if(doesConfigExist==true){
-        std::cout<<"reading file";
         return readConfig();
         
     }
     else{
-        std::cout<<"creating file";
         return createConfig();
     }
+
+}
+
+int checkIfNotEmpty(Config config){
+
+    for(auto& property:CONFIG_PROPERTIES){
+        if(config[property]==""|| config[property]=="not found"){
+            errorLog(property+" is empty, make sure to fill out config properly first");
+            return 1;
+        }
+    }
+    return 0;
+}
+
+/*
+returns 0, if everything is good
+returns 1, if any of the property is empty
+*/
+int checkConfigValidity(Config c){
+
+    if(checkIfNotEmpty(c)!=0){
+        return 1;
+    }
+    //other validity checks
+
+    return 0;
 
 }

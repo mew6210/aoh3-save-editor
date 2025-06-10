@@ -1,5 +1,6 @@
 #include "utilities.hpp"
 
+
 // trim from start (in place)
 inline void ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
@@ -19,3 +20,18 @@ void trim(std::string &s) {
     rtrim(s);
     ltrim(s);
 }
+
+
+void successLog(const std::string& s){
+    printf("[OK] %s\n",s.c_str());
+}
+
+void errorLog(const std::string& s){
+    printf("[!] %s\n",s.c_str());
+    exit(1);
+}
+
+void warningLog(const std::string& s){
+    printf("[?] %s\n",s.c_str());
+}
+
