@@ -3,6 +3,7 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <filesystem>
+#include "../utilities/utilities.hpp"
 
 
 using json=nlohmann::json;

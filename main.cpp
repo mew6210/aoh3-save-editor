@@ -13,6 +13,10 @@ int main(){
 
     vector<string> saves= getAvalibleSaves(config["AOH3_Game_Location"]);
 
+    if(saves.empty()) warningLog("vector returned empty");
+    else successLog("vector returned not empty");
+
+
     drawingLoop();
 
 
