@@ -7,7 +7,7 @@ using std::vector, std::string;
 int main(){
 
     Config config = initConfig();
-
+    
     if(checkConfigValidity(config)==0) successLog("Config is good");
     else errorLog("Something went wrong with config");
 
@@ -17,7 +17,7 @@ int main(){
     else successLog("vector returned not empty");
 
 
-    drawingLoop();
+    drawingLoop(saves);
 
 
 

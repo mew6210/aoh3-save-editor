@@ -4,17 +4,15 @@
 #include "raygui.h"
 
 
-void drawingLoop(){
+void drawingLoop(std::vector<std::string>& saves){
 
     Rectangle buttonBounds={24,24,120,30};
     InitWindow(800, 450, "AOH3 Save Editor");
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
-        BeginDrawing();
-
-            if (GuiButton(buttonBounds, "#191#Show Message"))
-                {}
+            BeginDrawing();
+            showSavesPanel(saves);  
 
 
             ClearBackground(RAYWHITE);
