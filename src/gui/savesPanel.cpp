@@ -20,8 +20,16 @@ void showSavesPanel(std::vector<std::string>& saves){
     static int windowWidth =GetScreenWidth();
     static Rectangle panelView={0};
     static Vector2 scroll={0,0};
-    static Rectangle bounds={0,0,windowWidth*0.3,windowHeight};
-    static Rectangle scrollBounds={0,0,(windowWidth*0.3)-15,windowHeight+(saves.size()*saveHeight)};
+    static Rectangle bounds={
+        0,
+        0,
+        static_cast<float>(windowWidth*0.3),
+        static_cast<float>(windowHeight)};
+    static Rectangle scrollBounds={
+        0,
+        0,
+        static_cast<float>((windowWidth*0.3)-15),
+        static_cast<float>(windowHeight+(saves.size()*saveHeight))};
 
 
 
