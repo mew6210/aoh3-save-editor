@@ -34,14 +34,8 @@ void showSavesPanel(std::vector<std::string>& saves){
 
 
     GuiScrollPanel(bounds,"Saves",scrollBounds,&scroll,&panelView);
-    GuiSetStyle(BUTTON, TEXT_ALIGNMENT, TEXT_ALIGN_LEFT);    // align text to the left
-    GuiSetStyle(BUTTON, TEXT_PADDING, 0);                    // reduce padding
-    GuiSetStyle(BUTTON, BORDER_WIDTH, 0);                    // remove border
-    GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(Color{245,245,245,0}));       
-    GuiSetStyle(BUTTON, BASE_COLOR_FOCUSED, ColorToInt(LIGHTGRAY));      // hover color
-    GuiSetStyle(BUTTON, BASE_COLOR_PRESSED, ColorToInt(GRAY));   
-    
-    static Vector2 mouse = GetMousePosition();
+
+        
 
 
     for(int i=0;i<saves.size();i++){
