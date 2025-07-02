@@ -16,6 +16,7 @@ int main(){
     if(saves.empty()) warningLog("vector returned empty");
     else successLog("vector returned not empty");
 
+    formatSaves(saves);
 
     drawingLoop(saves);
 
