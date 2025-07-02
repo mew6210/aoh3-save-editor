@@ -12,14 +12,14 @@
 
 class Config{
 
-    public:
     std::map<std::string,std::string> properties;
 
 
+public:
     Config(){}
 
     void addProperty(std::string s){
-
+        trim(s);
         properties.insert({s,""});
 
     }
@@ -40,7 +40,7 @@ class Config{
 
     }
 
-    std::string getPropertyValue(std::string key) {
+    std::string getPropertyValue(const std::string& key) {
 
 
 		if (properties.count(key) > 0) {
@@ -57,7 +57,7 @@ class Config{
 
 	}
 
-    std::string operator[](std::string s) {
+    std::string operator[](const std::string& s) {
 		return getPropertyValue(s);
 	}
 

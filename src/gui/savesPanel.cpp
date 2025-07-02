@@ -11,10 +11,6 @@
 
 void showSavesPanel(std::vector<std::string>& saves){
 
-
- 
-
-
     static int saveHeight=28;
     static int windowHeight =GetScreenHeight();
     static int windowWidth =GetScreenWidth();
