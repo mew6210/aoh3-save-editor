@@ -1,5 +1,6 @@
 #include "utilities.hpp"
 #include <numeric>
+#include <string>
 
 using std::string,std::vector;
 
@@ -90,7 +91,11 @@ void formatSave(string& save){
 }
 
 
+void addIterator(string& save,const int& iterator){
 
+    save=std::to_string(iterator)+". "+save;
+
+}
 
 
 
@@ -98,6 +103,12 @@ void formatSaves(vector<string>& saves){
 
     for(auto& save:saves){
         formatSave(save);
+    }
+
+    int it=1;
+    for (auto& save:saves){
+        addIterator(save,it);
+        it++;
     }
 
 
