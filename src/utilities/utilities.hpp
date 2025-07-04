@@ -3,6 +3,8 @@
 #include <locale>
 #include <iostream>
 #include <vector>
+#include <numeric>
+#include <string>
 
 void trim(std::string &s);
 

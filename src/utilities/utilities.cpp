@@ -1,6 +1,4 @@
 #include "utilities.hpp"
-#include <numeric>
-#include <string>
 
 using std::string,std::vector;
 
@@ -38,10 +36,10 @@ void warningLog(const string& s){
     printf("[?] %s\n",s.c_str());
 }
 
-int getNextFloor(string& save,int previousPos,vector<string>& words){
+size_t getNextWord(string& save,size_t previousPos,vector<string>& words,const char separator){
     words.push_back(save.substr(0,previousPos));
     save=save.substr(previousPos+1);
-    return save.find("_");
+    return save.find(separator);
 }
 
 bool is_number(const std::string& s)
@@ -57,21 +55,16 @@ bool shouldAddDot(const string& left,const string& right){
 
 }
 
-void formatSave(string& save){
 
-    vector<string> words;
-    string origin_save=save;
-    vector<int> positions={0};
-    int pos=save.find("_");
-    while(pos!=std::string::npos){
-        positions.push_back(pos);
-        pos=getNextFloor(save,pos,words);
+/*
 
-    }
-    words.push_back(save);
+returns a string that is the result of merging the vector of words together, like it would be a format <country> dd.mm.yyyy
 
-    save="";
+*/
+string mergeWithDots(vector<string>& words){
     
+    string save="";
+
     for(int i=0;i<words.size();i++){
 
         if(i+1==words.size()){
@@ -87,6 +80,37 @@ void formatSave(string& save){
         }
 
     }
+    return save;
+
+}
+
+
+/*
+
+returns a list of words that exist in a save, that are separated by separator.
+
+*/
+vector<string> getWords(string& save,const char separator){
+    
+    vector<string> words;
+    string origin_save=save;
+    vector<size_t> positions={0};
+    size_t pos=save.find(separator);
+    while(pos!=std::string::npos){
+        positions.push_back(pos);
+        pos=getNextWord(save,pos,words,separator);
+
+    }
+    words.push_back(save);
+    save=origin_save;
+    return words;
+}
+
+
+void replaceFloorsWithDots(string& save){
+    
+    auto words=getWords(save,'_');
+    save=mergeWithDots(words);
 
 }
 
@@ -98,17 +122,19 @@ void addIterator(string& save,const int& iterator){
 }
 
 
+void formatSave(string& save){
+    replaceFloorsWithDots(save);
+
+    static int it=1;
+    addIterator(save,it);
+    it++;
+}
+
 
 void formatSaves(vector<string>& saves){
 
     for(auto& save:saves){
         formatSave(save);
-    }
-
-    int it=1;
-    for (auto& save:saves){
-        addIterator(save,it);
-        it++;
     }
 
 
