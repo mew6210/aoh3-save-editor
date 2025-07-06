@@ -5,6 +5,7 @@
 #include <vector>
 #include <numeric>
 #include <string>
+#include <sstream>
 
 void trim(std::string &s);
 

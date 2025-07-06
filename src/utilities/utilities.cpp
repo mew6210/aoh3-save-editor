@@ -36,11 +36,7 @@ void warningLog(const string& s){
     printf("[?] %s\n",s.c_str());
 }
 
-size_t getNextWord(string& save,size_t previousPos,vector<string>& words,const char separator){
-    words.push_back(save.substr(0,previousPos));
-    save=save.substr(previousPos+1);
-    return save.find(separator);
-}
+
 
 bool is_number(const std::string& s)
 {
@@ -91,19 +87,24 @@ returns a list of words that exist in a save, that are separated by separator.
 
 */
 vector<string> getWords(string& save,const char separator){
-    
-    vector<string> words;
-    string origin_save=save;
-    vector<size_t> positions={0};
-    size_t pos=save.find(separator);
-    while(pos!=std::string::npos){
-        positions.push_back(pos);
-        pos=getNextWord(save,pos,words,separator);
 
+    string transformed_save="";
+    for(int i=0;i<save.length();i++){
+        if(save[i]==separator) transformed_save+=" ";
+        else transformed_save+=save[i];
     }
-    words.push_back(save);
-    save=origin_save;
+
+    std::stringstream stream(transformed_save);
+    string word="";
+    vector<string> words={};
+    while(stream>>word){
+        words.push_back(word);
+    }
+
+
+
     return words;
+
 }
 
 
