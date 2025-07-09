@@ -44,6 +44,10 @@ bool is_number(const std::string& s)
         s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end();
 }
 
+
+namespace{
+
+
 bool shouldAddDot(const string& left,const string& right){
 
     if(is_number(left)&&is_number(right)) return true;
@@ -53,9 +57,7 @@ bool shouldAddDot(const string& left,const string& right){
 
 
 /*
-
 returns a string that is the result of merging the vector of words together, like it would be a format <country> dd.mm.yyyy
-
 */
 string mergeWithDots(vector<string>& words){
     
@@ -81,12 +83,8 @@ string mergeWithDots(vector<string>& words){
 }
 
 
-/*
+string replaceSeparatorWithSpace(string& save,const char separator){
 
-returns a list of words that exist in a save, that are separated by separator.
-
-*/
-vector<string> getWords(string& save,const char separator){
 
     string transformed_save="";
     for(int i=0;i<save.length();i++){
@@ -94,6 +92,16 @@ vector<string> getWords(string& save,const char separator){
         else transformed_save+=save[i];
     }
 
+}
+
+
+}
+/*
+returns a list of words that exist in a save, that are separated by separator.
+*/
+vector<string> getWords(string& save,const char separator){
+
+    string transformed_save = replaceSeparatorWithSpace(save,'_');
     std::stringstream stream(transformed_save);
     string word="";
     vector<string> words={};
