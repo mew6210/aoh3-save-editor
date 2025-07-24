@@ -7,12 +7,19 @@
 void drawingLoop(std::vector<std::string>& saves){
 
     Rectangle buttonBounds={24,24,120,30};
+
+
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
+
     InitWindow(800, 450, "AOH3 Save Editor");
     SetTargetFPS(60);
+
+
     while (!WindowShouldClose())
     {
             BeginDrawing();
-            showSavesPanel(saves);  
+            showLeftPanel();
 
 
             ClearBackground(RAYWHITE);

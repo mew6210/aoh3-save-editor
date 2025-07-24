@@ -41,7 +41,7 @@ set(SOURCE_FILES
 "src/utilities/utilities.cpp"
 "src/reader/reader.cpp"
 "src/gui/gui.cpp"
-"src/gui/savesPanel.cpp"
+"src/gui/leftPanel/leftPanel.cpp"
 
 
 )
