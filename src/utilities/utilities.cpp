@@ -91,6 +91,7 @@ string replaceSeparatorWithSpace(string& save,const char separator){
         if(save[i]==separator) transformed_save+=" ";
         else transformed_save+=save[i];
     }
+    return save;
 
 }
 
