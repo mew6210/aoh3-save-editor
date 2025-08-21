@@ -36,7 +36,7 @@ FetchContent_MakeAvailable(nlohmann_json)
 FetchContent_MakeAvailable(raygui)
 
 set(SOURCE_FILES 
-"main.cpp"
+"src/main.cpp"
 "src/config/config.cpp"
 "src/utilities/utilities.cpp"
 "src/reader/reader.cpp"

@@ -16,11 +16,11 @@ std::string AppendSavesDir(const std::string& gamePath){
 
 }
 
-
 /*
 Returns a vector of directories that are saves, if path is wrong returns an empty vector.
 */
 std::vector<std::string> getAvalibleSaves(const std::string& gamePath){
+
 
     std::vector<std::string> saves;
     std::string savesPath=AppendSavesDir(gamePath);
@@ -43,10 +43,5 @@ std::vector<std::string> getAvalibleSaves(const std::string& gamePath){
         warningLog(err.what());
         return saves;
     }
-        
-
-  
-        
-
-
 }
+

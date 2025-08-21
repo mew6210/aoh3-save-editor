@@ -18,6 +18,7 @@ int main(){
 
     vector<string> savesFormatted=saves;
     formatSaves(savesFormatted);
+    
 
     drawingLoop(savesFormatted);
 
