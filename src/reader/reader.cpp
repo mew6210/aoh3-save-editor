@@ -3,7 +3,7 @@
 namespace fs = std::filesystem;
 
 
-std::string AppendSavesDir(const std::string& gamePath){
+std::string appendSavesDir(const std::string& gamePath){
 
     fs::path gameDir=gamePath;
     fs::path saves="saves";
@@ -23,7 +23,7 @@ std::vector<std::string> getAvalibleSaves(const std::string& gamePath){
 
 
     std::vector<std::string> saves;
-    std::string savesPath=AppendSavesDir(gamePath);
+    std::string savesPath=appendSavesDir(gamePath);
     
     try{
 
@@ -45,3 +45,58 @@ std::vector<std::string> getAvalibleSaves(const std::string& gamePath){
     }
 }
 
+fs::path appendDetailsJsonToPath(const fs::path& path){
+    return path / "Details.json";
+}
+
+JsonProperty parseDetailsStructureRHS(const std::string& rhs){
+
+    if(rhs.size()==0) return JsonProperty();
+    
+    PropertyType type;
+    if(rhs[0]=='\"')                    type = pt_String;
+    else if(rhs[0]=='t'||rhs[0]=='f')   type = pt_Boolean;
+    else if(isdigit(rhs[0]))            type = pt_Number;
+    else                                type = pt_NULL;
+    
+    return JsonProperty(rhs,type);
+}
+
+std::pair<std::string,JsonProperty> parseDetailsStructureLine(const std::string& line){
+
+    size_t commaPos = line.find(":");
+    std::string lhs = line.substr(0,commaPos);
+    std::string rhs = line.substr(commaPos+1);
+    trim(rhs);
+    JsonProperty value = parseDetailsStructureRHS(rhs);
+    
+    return {lhs,value};     //key,value
+}
+
+void DetailsStructure::loadStructure(const std::filesystem::path& path){
+    std::ifstream file(path);
+    std::string line = "";
+    while(std::getline(file,line)){
+        if(line == "{") continue;
+        if(line == "}") continue;
+        auto parsedLine = parseDetailsStructureLine(line);
+
+        structure.insert(parsedLine);
+    }
+}
+
+std::string propertyTypeToString(const PropertyType& type){
+    switch(type){
+        case pt_Boolean: return "Boolean";
+        case pt_Number: return "Number";
+        case pt_String: return "String";
+        case pt_NULL: return "Null";    
+        default: return "unkown";
+    }
+}
+
+void DetailsStructure::printStructure(){
+    for(const auto& [key,val]:structure){
+        std::cout<<"key: "<<key<<" value: "<<val.value<<" value type: "<<propertyTypeToString(val.type)<<"\n";
+    }
+}
