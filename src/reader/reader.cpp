@@ -19,24 +19,23 @@ std::string appendSavesDir(const std::string& gamePath){
 /*
 Returns a vector of directories that are saves, if path is wrong returns an empty vector.
 */
-std::vector<std::string> getAvalibleSaves(const std::string& gamePath){
+std::vector<Save> getAvalibleSaves(const std::string& gamePath){
 
 
-    std::vector<std::string> saves;
+    std::vector<Save> saves;
     std::string savesPath=appendSavesDir(gamePath);
     
     try{
-
         auto directory_iterator=fs::directory_iterator(savesPath);
 
-        for (const auto & entry : directory_iterator)
-        {
+        for (const auto & entry : directory_iterator){
             if(entry.is_directory()){
                 saves.push_back(entry.path().filename().string());
-         }
+            }
             
         }
-            return saves;
+        
+        return saves;
     }
     catch(fs::filesystem_error& err){    //in case the path is wrong, notify the user about that
         warningLog("Path to game files is incorrect, couldn't find saves folder in it. Make sure it is correct");
@@ -48,6 +47,7 @@ std::vector<std::string> getAvalibleSaves(const std::string& gamePath){
 fs::path appendDetailsJsonToPath(const fs::path& path){
     return path / "Details.json";
 }
+
 
 JsonProperty parseDetailsStructureRHS(const std::string& rhs){
 

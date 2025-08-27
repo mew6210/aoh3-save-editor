@@ -4,7 +4,7 @@
 #include "raygui.h"
 
 
-void drawingLoop(std::vector<std::string>& saves){
+void drawingLoop(std::vector<Save>& saves){
 
     Rectangle buttonBounds={24,24,120,30};
 

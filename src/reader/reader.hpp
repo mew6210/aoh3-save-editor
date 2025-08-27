@@ -4,7 +4,7 @@
 #include <iostream>
 #include <filesystem>
 #include "../utilities/utilities.hpp"
-
+#include "../save/save.hpp"
 
 using json=nlohmann::json;
 
@@ -41,5 +41,5 @@ public:
 };
 
 
-std::vector<std::string> getAvalibleSaves(const std::string& gamePath);
+std::vector<Save> getAvalibleSaves(const std::string& gamePath);
 std::filesystem::path appendDetailsJsonToPath(const std::filesystem::path& path);

@@ -8,19 +8,19 @@ int main(){
 
     Config config = initConfig();
     
-    if(checkConfigValidity(config)==0) successLog("Config is good");
-    else errorLog("Something went wrong with config");
+    if(checkConfigValidity(config)!=0) errorLog("Something went wrong with config");
 
-    vector<string> saves= getAvalibleSaves(config["AOH3_Game_Location"]);
-
+    vector<Save> saves= getAvalibleSaves(config["AOH3_Game_Location"]);
+    
     if(saves.empty()) warningLog("vector returned empty");
-    else successLog("vector returned not empty");
+    
+    for(auto& save:saves){
+        save.formatNames();
+    }
 
-    vector<string> savesFormatted=saves;
-    formatSaves(savesFormatted);
     
 
-    drawingLoop(savesFormatted);
+    drawingLoop(saves);
 
 
 
