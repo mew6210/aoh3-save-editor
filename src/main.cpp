@@ -15,9 +15,11 @@ int main(){
     if(saves.empty()) warningLog("vector returned empty");
     
     for(auto& save:saves){
-        save.formatNames();
+        save.formatName();
     }
-
+    for(auto& save:saves){
+        save.printSave();
+    }
     
 
     drawingLoop(saves);

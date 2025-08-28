@@ -11,5 +11,6 @@ public:
 
     
     Save(const std::string& c_name_raw):name_raw(c_name_raw){}
-    void formatNames();
+    void formatName();
+    void printSave();
 };
