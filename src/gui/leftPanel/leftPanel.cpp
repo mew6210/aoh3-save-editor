@@ -3,9 +3,9 @@
 
 void showLeftPanel(){
 
-    static int width = GetScreenWidth()*0.2;
-
-    Rectangle leftPanelSize={0,0,width,GetScreenHeight()};
+    static float width = GetScreenWidth()*0.2;
+    static float height = GetScreenHeight();
+    Rectangle leftPanelSize={0,0,width,height};
     GuiPanel(leftPanelSize,"");
 
     Rectangle labelSize={0,0,width,50};
