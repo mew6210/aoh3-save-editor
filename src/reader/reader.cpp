@@ -30,7 +30,11 @@ std::vector<Save> getAvalibleSaves(const std::string& gamePath){
 
         for (const auto & entry : directory_iterator){
             if(entry.is_directory()){
-                saves.push_back(entry.path().filename().string());
+                saves.push_back(
+                    Save(
+                        entry.path().filename().string(),
+                        gamePath)
+                );
             }
             
         }
