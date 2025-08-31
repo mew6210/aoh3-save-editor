@@ -79,6 +79,8 @@ std::pair<std::string,JsonProperty> parseDetailsStructureLine(const std::string&
 
 void DetailsStructure::loadStructure(const std::filesystem::path& path){
     std::ifstream file(path);
+    if (!file.is_open()) errorLog("wrong file path");
+    
     std::string line = "";
     while(std::getline(file,line)){
         if(line == "{") continue;
@@ -104,3 +106,19 @@ void DetailsStructure::printStructure(){
         std::cout<<"key: "<<key<<" value: "<<val.value<<" value type: "<<propertyTypeToString(val.type)<<"\n";
     }
 }
+
+void writeDetailsLine(const std::pair<std::string,JsonProperty> line, std::ofstream& file) {
+    file << line.first << ": " << line.second.value << "\n";
+}
+
+void DetailsStructure::writeStructure(const std::filesystem::path& path) {
+
+    std::ofstream detailsFile(path);
+    detailsFile << "{\n";
+    for (auto& line : structure) {
+        writeDetailsLine(line,detailsFile);
+    }
+    detailsFile << "}";
+}
+
+
